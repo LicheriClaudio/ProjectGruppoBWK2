@@ -19202,4 +19202,10 @@ fieldset:disabled .btn {
 .bi-filetype-xlsx::before {
   content: "";
 }
+
+body {
+  background: #f9f6f8;
+  background: -webkit-gradient(linear, left top, right top, from(#f9f6f8), color-stop(94%, #570578));
+  background: linear-gradient(90deg, #f9f6f8 0%, #570578 94%);
+}
 /*# sourceMappingURL=style.css.map */

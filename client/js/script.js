@@ -32,16 +32,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //------------------USERS ------------------------
   //------GET
-function getAllUsers() {
-  fetch(APIusers)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-      /* printTableUser(json); */
-      /* console.log(users); */
-      console.log(APIusers)
-    });
-}
+  function getAllUsers() {
+    fetch(APIusers)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        /* printTableUser(json); */
+        /* console.log(users); */
+        console.log(APIusers)
+      });
+  }
+
+
+
 //----DETAIL
 function detailUser(id) {
   fetch(APIusers + id)
@@ -51,11 +54,66 @@ function detailUser(id) {
     });
 }
 
+function getAllUsers() {
+  fetch(APIusers)
+    .then((response) => response.json())
+    .then(usersArr => {
+      usersArr.forEach(user => {
+
+        let a = document.querySelector
+          ('#general');
+        let cardA = document.createElement('div');
+        cardA.className = 'col';
+        a.appendChild(cardA);
+
+        let cardB = document.createElement('div');
+        cardB.classList = 'card';
+        cardA.append(cardB);
+
+        let cardD = document.createElement('div');
+        cardD.className = 'card-body';
+        cardB.append(cardD);
+
+        let cardName = document.createElement('h5');
+        cardName.className = 'card-text';
+        cardName.innerText = `${user.name}`;
+        cardD.append(cardName);
+
+        let hr = document.createElement('hr');
+        cardD.append(hr);
+
+        let cardAddress = document.createElement('p');
+        cardAddress.className = 'card-text';
+        cardAddress.innerText = `${user.address.street}, ${user.address.suite} (${user.address.city})`;
+        cardD.append(cardAddress);
+
+        let cardEmail = document.createElement('p');
+        cardEmail.className = 'card-text';
+        cardEmail.innerText = `${user.email}`;
+        cardD.append(cardEmail);
+
+        let cardPhone = document.createElement('p');
+        cardPhone.className = 'card-text';
+        cardPhone.innerText = `Tel: ${user.phone}`;
+        cardD.append(cardPhone);
+      })
+    });
+}
+
+
 //---ADDUSERS
 function addUser() {
   let name = document.querySelector('#formUser input[name="nome"]');
   let username = document.querySelector('#formUser input[name="cognome"]');
   let email = document.querySelector('#formUser input[name="email"]');
+
+  let obj = {
+    name: name.value,
+    username: username.value,
+    city: city.value,
+    email: email.value,
+    password: "qwerty",
+  };
 
   fetch(APIusers, {
     method: "POST",
@@ -69,12 +127,11 @@ function addUser() {
       console.log(json);
       getAllUsers();
 
-      name.value = "";
-      username.value = "";
-      city.value = "";
-      email.value = "";
+      
     });
 }
+
+
 
 
 
@@ -105,6 +162,12 @@ function addPost() {
   let id = document.querySelector('#formUser input[id="number"]');
   let title = document.querySelector('#formUser input[title="title"]');
 
+  let obj = {
+    userId: userId.value,
+      id:id.value,
+      title: title.value
+}
+
   fetch(APIpost, {
     method: "POST",
     body: JSON.stringify(obj),
@@ -117,9 +180,6 @@ function addPost() {
       console.log(json);
       getAllUsers();
 
-      userId.value = APIusers + id;
-      id.value = count++;
-      title.value = "";
      
     });
 }
