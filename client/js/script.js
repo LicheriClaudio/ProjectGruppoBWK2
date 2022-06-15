@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* let addBtn = document.querySelector("#formUser button");
   addBtn.addEventListener("click", addUser); */
   //GET
-  getAllUsers();
+  getAllUsers(1);
   getAllPost();
   getAllAlbum();
   getAllComment();
@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
   detailComment(1);
   //ADD
   addUser();
+
+  
 
 
   //REMOVE
@@ -54,11 +56,17 @@ function detailUser(id) {
     });
 }
 
-function getAllUsers() {
+function getAllUsers(page) {
+  let list = document.querySelector('#general');
+            while (list.hasChildNodes()) {  
+                list.removeChild(list.firstChild);
+            }
   fetch(APIusers)
     .then((response) => response.json())
     .then(usersArr => {
-      usersArr.forEach(user => {
+      let pageCount = page*5;
+     pageUsers = usersArr.slice(pageCount-5, pageCount);
+     pageUsers.forEach(user => {
 
         let a = document.querySelector
           ('#general');
@@ -115,6 +123,7 @@ function getAllUsers() {
       });
     });
 });
+pagination() 
 }
 
 
@@ -343,5 +352,22 @@ function  searchUser() {
     }
     });
   
+});
+}
+
+function pagination() {
+
+  fetch(APIusers)
+      .then((response) => response.json())
+      .then((json) => {
+
+  let count = json.length / 5;
+  let page = Math.ceil(count);
+  let pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+  for(let i=1; i<=page; i++){
+      pagination.innerHTML += '<li class="page-item"><button onclick="getAllUsers('+i+')" class="page-link" href="#">'+i+'</button></li>';
+  }
+
 });
 }
