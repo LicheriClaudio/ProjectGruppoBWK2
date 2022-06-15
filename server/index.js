@@ -140,7 +140,7 @@ app.post("/api/pst", (request, response) => {
 app.put("/api/users/:id", (request, response) => {
   const id = request.params.id;
   const obj_mod = request.body;
-
+  console.log(obj_mod);
   //Soluzione 1
   let obj = users.find(ele => ele.id === +id);
   obj = obj_mod;

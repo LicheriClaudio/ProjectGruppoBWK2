@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
   getAllComment();
   getAllPhoto();
   //DETAIL
-  detailUser(1);
-  detailPost(1);
-  detailPhoto(1);
-  detailAlbum(1);
-  detailComment(1);
+  /*   detailUser(id); */
+  /*  detailPost(1);
+   detailPhoto(1);
+   detailAlbum(1);
+   detailComment(1); */
   //ADD
-  addUser();
+  /*  addUser(); */
 
 
   //REMOVE
@@ -31,28 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //------------------USERS ------------------------
-  //------GET
-  function getAllUsers() {
-    fetch(APIusers)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIusers)
-      });
-  }
-
-
-
-//----DETAIL
-function detailUser(id) {
-  fetch(APIusers + id)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-    });
-}
+//------GET
 
 function getAllUsers() {
   fetch(APIusers)
@@ -68,6 +47,11 @@ function getAllUsers() {
 
         let cardB = document.createElement('div');
         cardB.classList = 'card';
+        cardB.onclick = function () {
+          let j = JSON.stringify(user);
+          sessionStorage.setItem(`user`, j);
+          window.open('single-user.html', '_blank');
+        }
         cardA.append(cardB);
 
         let cardD = document.createElement('div');
@@ -100,6 +84,14 @@ function getAllUsers() {
     });
 }
 
+//----DETAIL
+
+function detailUser(id) {
+  let fetchUser = fetch(APIusers + id).then(res => res.json());
+  fetchUser.then(user => {
+    console.log(user.name)
+  })
+}
 
 //---ADDUSERS
 function addUser() {
@@ -127,7 +119,7 @@ function addUser() {
       console.log(json);
       getAllUsers();
 
-      
+
     });
 }
 
@@ -136,19 +128,19 @@ function addUser() {
 
 
 //------------------ POST ------------------------
-  //------GET
-  function getAllPost() {
-    fetch(APIpost)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIpost);
-      });
-  }
+//------GET
+function getAllPost() {
+  fetch(APIpost)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIpost);
+    });
+}
 
-  //----DETAIL
+//----DETAIL
 function detailPost(id) {
   fetch(APIpost + id)
     .then((response) => response.json())
@@ -164,9 +156,9 @@ function addPost() {
 
   let obj = {
     userId: userId.value,
-      id:id.value,
-      title: title.value
-}
+    id: id.value,
+    title: title.value
+  }
 
   fetch(APIpost, {
     method: "POST",
@@ -180,22 +172,22 @@ function addPost() {
       console.log(json);
       getAllUsers();
 
-     
+
     });
 }
 //------------------ COMMENT ------------------------
 //------GET
-  function getAllComment() {
-    fetch(APIcom)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIcom);
-      });
-  }
-  //----DETAIL
+function getAllComment() {
+  fetch(APIcom)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIcom);
+    });
+}
+//----DETAIL
 function detailComment(id) {
   fetch(APIcom + id)
     .then((response) => response.json())
@@ -205,17 +197,17 @@ function detailComment(id) {
 }
 //------------------ PHOTO ------------------------
 //------GET
-  function getAllPhoto() {
-    fetch(APIphoto)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIphoto);
-      });
-  }
-  //----DETAIL
+function getAllPhoto() {
+  fetch(APIphoto)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIphoto);
+    });
+}
+//----DETAIL
 function detailPhoto(id) {
   fetch(APIphoto + id)
     .then((response) => response.json())
@@ -225,21 +217,46 @@ function detailPhoto(id) {
 }
 //------------------ ALBUM ------------------------
 //------GET
-  function getAllAlbum() {
-    fetch(APIalbum)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIalbum);
-      });
-  }
-  //----DETAIL
+function getAllAlbum() {
+  fetch(APIalbum)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIalbum);
+    });
+}
+//----DETAIL
 function detailAlbum(id) {
   fetch(APIalbum + id)
     .then((response) => response.json())
     .then((json) => {
       console.log(json);
     });
+}
+
+function login() {
+  fetch(APIusers)
+    .then((response) => response.json())
+    .then(emailArr => {
+      emailArr.forEach(mail => {
+
+
+        console.log(APIusers);
+
+        if (
+          document.getElementById("form3Example3").value === mail.email &&
+          document.getElementById("form3Example4").value == "qwerty"
+        ) {
+          window.location = "http://127.0.0.1:5500/client/Project.html";
+          alert("benvenuto!");
+          console.log(mail);
+          console.log(password);
+        } else {
+          alert("mail o password errati!");
+          /* return */
+        }
+      })
+    })
 }
