@@ -90,7 +90,7 @@ app.get("/api/photo/:id", (request, response) => {
 //---------------------USERS----------------------
 let countUsers = 10;
 app.post("/api/users", (request, response) => {
-    
+
   const obj = request.body;
   console.log(obj);
   obj.id = countUsers++;
@@ -131,7 +131,7 @@ app.post("/api/pst", (request, response) => {
   const obj = request.body;
   console.log(obj);
   obj.id = countPost++;
-  pst.push(obj);
+  post.push(obj);
   response.json("Utente Aggiunto nel DB");
 });
 
@@ -143,7 +143,7 @@ app.put("/api/users/:id", (request, response) => {
 
   //Soluzione 1
   let obj = users.find(ele => ele.id === +id);
-    obj = obj_mod;
+  obj = obj_mod;
 
   response.json("Utente Modificato nel DB");
 });
@@ -154,8 +154,8 @@ app.put("/api/pst/:id", (request, response) => {
   const obj_mod = request.body;
 
   //Soluzione 1
-  let obj = pst.find(ele => ele.id === +id);
-    obj = obj_mod;
+  let obj = post.find(ele => ele.id === +id);
+  obj = obj_mod;
 
   response.json("Utente Modificato nel DB");
 });
@@ -166,7 +166,7 @@ app.put("/api/photo/:id", (request, response) => {
 
   //Soluzione 1
   let obj = photo.find(ele => ele.id === +id);
-    obj = obj_mod;
+  obj = obj_mod;
 
   response.json("Utente Modificato nel DB");
 });
@@ -177,7 +177,7 @@ app.put("/api/album/:id", (request, response) => {
 
   //Soluzione 1
   let obj = album.find(ele => ele.id === +id);
-    obj = obj_mod;
+  obj = obj_mod;
 
   response.json("Utente Modificato nel DB");
 });
@@ -188,7 +188,7 @@ app.put("/api/comment/:id", (request, response) => {
 
   //Soluzione 1
   let obj = com.find(ele => ele.id === +id);
-    obj = obj_mod;
+  obj = obj_mod;
 
   response.json("Utente Modificato nel DB");
 });
@@ -207,8 +207,8 @@ app.delete("/api/users/:id", (request, response) => {
 app.delete("/api/pst/:id", (request, response) => {
   const id = request.params.id;
   //Soluzione 1
-  pst = pst.filter((ele) => ele.id !== +id);
-  
+  post = post.filter((ele) => ele.id !== +id);
+
   response.json("Utente Eliminato dal DB");
 });
 //-------------------------COMMENT-------------------
@@ -216,7 +216,7 @@ app.delete("/api/comment/:id", (request, response) => {
   const id = request.params.id;
   //Soluzione 1
   com = com.filter((ele) => ele.id !== +id);
-  
+
   response.json("Utente Eliminato dal DB");
 });
 
@@ -225,7 +225,7 @@ app.delete("/api/album/:id", (request, response) => {
   const id = request.params.id;
   //Soluzione 1
   album = album.filter((ele) => ele.id !== +id);
-  
+
   response.json("Utente Eliminato dal DB");
 });
 //-------------------------PHOTO-------------------
@@ -233,7 +233,7 @@ app.delete("/api/photo/:id", (request, response) => {
   const id = request.params.id;
   //Soluzione 1
   photo = photo.filter((ele) => ele.id !== +id);
-  
+
   response.json("Utente Eliminato dal DB");
 });
 
