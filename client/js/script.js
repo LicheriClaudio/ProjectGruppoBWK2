@@ -287,6 +287,7 @@ function  searchUser() {
                 list.removeChild(list.firstChild);
             }
           
+          
   let a = document.querySelector('#general');
         let cardA = document.createElement('div');
         cardA.className = 'col';
