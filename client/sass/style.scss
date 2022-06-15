@@ -6,3 +6,16 @@ body {
     background: rgb(249,246,248);
     background: linear-gradient(90deg, rgba(249,246,248,1) 0%, rgba(87,5,120,1) 94%);
 }
+
+.container_login {
+    background-image: url('/img/imglogin.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 5rem;
+    padding: 10rem 5rem 10rem 5rem;
+}
+
+nav {
+    background: #570578;
+}
