@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
   getAllComment();
   getAllPhoto();
   //DETAIL
-  detailUser(1);
-  detailPost(1);
-  detailPhoto(1);
-  detailAlbum(1);
-  detailComment(1);
+  /*   detailUser(id); */
+  /*  detailPost(1);
+   detailPhoto(1);
+   detailAlbum(1);
+   detailComment(1); */
   //ADD
-  addUser();
+  /*  addUser(); */
 
   
 
@@ -33,28 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //------------------USERS ------------------------
-  //------GET
-  function getAllUsers() {
-    fetch(APIusers)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIusers)
-      });
-  }
-
-
-
-//----DETAIL
-function detailUser(id) {
-  fetch(APIusers + id)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-    });
-}
+//------GET
 
 function getAllUsers(page) {
   let list = document.querySelector('#general');
@@ -76,6 +55,11 @@ function getAllUsers(page) {
 
         let cardB = document.createElement('div');
         cardB.classList = 'card';
+        cardB.onclick = function () {
+          let j = JSON.stringify(user);
+          sessionStorage.setItem(`user`, j);
+          window.open('single-user.html', '_blank');
+        }
         cardA.append(cardB);
 
         let cardD = document.createElement('div');
@@ -83,49 +67,58 @@ function getAllUsers(page) {
         cardB.append(cardD);
 
         fetch(APIphoto)
-        .then((response) => response.json())
-        .then(photoArr => {
-          photoArr.forEach(photo => {
-            if (photo.id === user.id) {
+          .then((response) => response.json())
+          .then(photoArr => {
+            photoArr.forEach(photo => {
+              if (photo.id === user.id) {
 
-        let carImg = document.createElement('div');
-        carImg.className = 'cardImg';
-        carImg.innerHTML = `<img src="${photo.thumbnailUrl}">`
-        cardD.append(carImg);
-          }
-          
-        });
+                let carImg = document.createElement('div');
+                carImg.className = 'cardImg';
+                carImg.innerHTML = `<img src="${photo.thumbnailUrl}">`
+                cardD.append(carImg);
+              }
 
-        let cardName = document.createElement('h5');
-        cardName.className = 'card-text';
-        cardName.innerText = `${user.name}`;
-        cardD.append(cardName);
-        
+            });
+
+            let cardName = document.createElement('h5');
+            cardName.className = 'card-text';
+            cardName.innerText = `${user.name}`;
+            cardD.append(cardName);
 
 
-        let hr = document.createElement('hr');
-        cardD.append(hr);
 
-        let cardAddress = document.createElement('p');
-        cardAddress.className = 'card-text';
-        cardAddress.innerText = `${user.address.street}, ${user.address.suite} (${user.address.city})`;
-        cardD.append(cardAddress);
+            let hr = document.createElement('hr');
+            cardD.append(hr);
 
-        let cardEmail = document.createElement('p');
-        cardEmail.className = 'card-text';
-        cardEmail.innerText = `${user.email}`;
-        cardD.append(cardEmail);
+            let cardAddress = document.createElement('p');
+            cardAddress.className = 'card-text';
+            cardAddress.innerText = `${user.address.street}, ${user.address.suite} (${user.address.city})`;
+            cardD.append(cardAddress);
 
-        let cardPhone = document.createElement('p');
-        cardPhone.className = 'card-text';
-        cardPhone.innerText = `Tel: ${user.phone}`;
-        cardD.append(cardPhone);
+            let cardEmail = document.createElement('p');
+            cardEmail.className = 'card-text';
+            cardEmail.innerText = `${user.email}`;
+            cardD.append(cardEmail);
+
+            let cardPhone = document.createElement('p');
+            cardPhone.className = 'card-text';
+            cardPhone.innerText = `Tel: ${user.phone}`;
+            cardD.append(cardPhone);
+          });
       });
     });
-});
+
 pagination() 
 }
 
+//----DETAIL
+
+function detailUser(id) {
+  let fetchUser = fetch(APIusers + id).then(res => res.json());
+  fetchUser.then(user => {
+    console.log(user.name)
+  })
+}
 
 
 
@@ -155,7 +148,7 @@ function addUser() {
       console.log(json);
       getAllUsers();
 
-      
+
     });
 }
 
@@ -164,19 +157,19 @@ function addUser() {
 
 
 //------------------ POST ------------------------
-  //------GET
-  function getAllPost() {
-    fetch(APIpost)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIpost);
-      });
-  }
+//------GET
+function getAllPost() {
+  fetch(APIpost)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIpost);
+    });
+}
 
-  //----DETAIL
+//----DETAIL
 function detailPost(id) {
   fetch(APIpost + id)
     .then((response) => response.json())
@@ -192,9 +185,9 @@ function addPost() {
 
   let obj = {
     userId: userId.value,
-      id:id.value,
-      title: title.value
-}
+    id: id.value,
+    title: title.value
+  }
 
   fetch(APIpost, {
     method: "POST",
@@ -208,22 +201,22 @@ function addPost() {
       console.log(json);
       getAllUsers();
 
-     
+
     });
 }
 //------------------ COMMENT ------------------------
 //------GET
-  function getAllComment() {
-    fetch(APIcom)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIcom);
-      });
-  }
-  //----DETAIL
+function getAllComment() {
+  fetch(APIcom)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIcom);
+    });
+}
+//----DETAIL
 function detailComment(id) {
   fetch(APIcom + id)
     .then((response) => response.json())
@@ -233,17 +226,17 @@ function detailComment(id) {
 }
 //------------------ PHOTO ------------------------
 //------GET
-  function getAllPhoto() {
-    fetch(APIphoto)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIphoto);
-      });
-  }
-  //----DETAIL
+function getAllPhoto() {
+  fetch(APIphoto)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIphoto);
+    });
+}
+//----DETAIL
 function detailPhoto(id) {
   fetch(APIphoto + id)
     .then((response) => response.json())
@@ -253,17 +246,17 @@ function detailPhoto(id) {
 }
 //------------------ ALBUM ------------------------
 //------GET
-  function getAllAlbum() {
-    fetch(APIalbum)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        /* printTableUser(json); */
-        /* console.log(users); */
-        console.log(APIalbum);
-      });
-  }
-  //----DETAIL
+function getAllAlbum() {
+  fetch(APIalbum)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      /* printTableUser(json); */
+      /* console.log(users); */
+      console.log(APIalbum);
+    });
+}
+//----DETAIL
 function detailAlbum(id) {
   fetch(APIalbum + id)
     .then((response) => response.json())
@@ -272,87 +265,111 @@ function detailAlbum(id) {
     });
 }
 
+function login() {
+  fetch(APIusers)
+    .then((response) => response.json())
+    .then(emailArr => {
+      emailArr.forEach(mail => {
+
+
+        console.log(APIusers);
+
+        if (
+          document.getElementById("form3Example3").value === mail.email &&
+          document.getElementById("form3Example4").value == "qwerty"
+        ) {
+          window.location = "http://127.0.0.1:5500/client/Project.html";
+          alert("benvenuto!");
+          console.log(mail);
+          console.log(password);
+        } else {
+          alert("mail o password errati!");
+          /* return */
+        }
+      })
+    })
+}
 
 
 
 
-function  searchUser() {
-  
+function searchUser() {
+
 
   let searchItem = document.querySelector('form input');
   fetch(APIusers)
-  .then((response) => response.json())
-  .then((usersArr) => {
-  
-    /* printTableUser(json); */
-    /* console.log(users); */
-  
-  usersArr.forEach(user => {
-  if (searchItem.value === user.name) {
-    
+    .then((response) => response.json())
+    .then((usersArr) => {
 
-  let list = document.querySelector('#general');
-            while (list.hasChildNodes()) {  
-                list.removeChild(list.firstChild);
-            }
-          
-          
-  let a = document.querySelector('#general');
-        let cardA = document.createElement('div');
-        cardA.className = 'col';
-        a.appendChild(cardA);
+      /* printTableUser(json); */
+      /* console.log(users); */
 
-        let cardB = document.createElement('div');
-        cardB.classList = 'card';
-        cardA.append(cardB);
+      usersArr.forEach(user => {
+        if (searchItem.value === user.name) {
 
-        let cardD = document.createElement('div');
-        cardD.className = 'card-body';
-        cardB.append(cardD);
 
-        fetch(APIphoto)
-        .then((response) => response.json())
-        .then(photoArr => {
-          photoArr.forEach(photo => {
-            if (photo.id === user.id) {
-
-        let carImg = document.createElement('div');
-        carImg.className = 'cardImg';
-        carImg.innerHTML = `<img src="${photo.thumbnailUrl}">`
-        cardD.append(carImg);
+          let list = document.querySelector('#general');
+          while (list.hasChildNodes()) {
+            list.removeChild(list.firstChild);
           }
-          
-        });
-
-        let cardName = document.createElement('h5');
-        cardName.className = 'card-text';
-        cardName.innerText = `${user.name}`;
-        cardD.append(cardName);
-    
 
 
-        let hr = document.createElement('hr');
-        cardD.append(hr);
+          let a = document.querySelector('#general');
+          let cardA = document.createElement('div');
+          cardA.className = 'col';
+          a.appendChild(cardA);
 
-        let cardAddress = document.createElement('p');
-        cardAddress.className = 'card-text';
-        cardAddress.innerText = `${user.address.street}, ${user.address.suite} (${user.address.city})`;
-        cardD.append(cardAddress);
+          let cardB = document.createElement('div');
+          cardB.classList = 'card';
+          cardA.append(cardB);
 
-        let cardEmail = document.createElement('p');
-        cardEmail.className = 'card-text';
-        cardEmail.innerText = `${user.email}`;
-        cardD.append(cardEmail);
+          let cardD = document.createElement('div');
+          cardD.className = 'card-body';
+          cardB.append(cardD);
 
-        let cardPhone = document.createElement('p');
-        cardPhone.className = 'card-text';
-        cardPhone.innerText = `Tel: ${user.phone}`;
-        cardD.append(cardPhone);
+          fetch(APIphoto)
+            .then((response) => response.json())
+            .then(photoArr => {
+              photoArr.forEach(photo => {
+                if (photo.id === user.id) {
+
+                  let carImg = document.createElement('div');
+                  carImg.className = 'cardImg';
+                  carImg.innerHTML = `<img src="${photo.thumbnailUrl}">`
+                  cardD.append(carImg);
+                }
+
+              });
+
+              let cardName = document.createElement('h5');
+              cardName.className = 'card-text';
+              cardName.innerText = `${user.name}`;
+              cardD.append(cardName);
+
+
+
+              let hr = document.createElement('hr');
+              cardD.append(hr);
+
+              let cardAddress = document.createElement('p');
+              cardAddress.className = 'card-text';
+              cardAddress.innerText = `${user.address.street}, ${user.address.suite} (${user.address.city})`;
+              cardD.append(cardAddress);
+
+              let cardEmail = document.createElement('p');
+              cardEmail.className = 'card-text';
+              cardEmail.innerText = `${user.email}`;
+              cardD.append(cardEmail);
+
+              let cardPhone = document.createElement('p');
+              cardPhone.className = 'card-text';
+              cardPhone.innerText = `Tel: ${user.phone}`;
+              cardD.append(cardPhone);
+            });
+        }
       });
-    }
+
     });
-  
-});
 }
 
 function pagination() {
