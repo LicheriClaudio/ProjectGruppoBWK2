@@ -51,3 +51,8 @@ a {
 #su_album {
   display: none;
 }
+.card-body:hover {
+  filter: brightness(120%);
+  cursor: pointer;
+
+}

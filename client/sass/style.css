@@ -19251,4 +19251,10 @@ a {
 #su_album {
   display: none;
 }
+
+.card-body:hover {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+  cursor: pointer;
+}
 /*# sourceMappingURL=style.css.map */
