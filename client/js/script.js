@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   /* let addBtn = document.querySelector("#formUser button");
   addBtn.addEventListener("click", addUser); */
   //GET
-  getAllUsers();
+  getAllUsers(1);
   getAllPost();
   getAllAlbum();
   getAllComment();
@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
   //ADD
   /*  addUser(); */
 
+  
+
 
   //REMOVE
 });
@@ -33,11 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
 //------------------USERS ------------------------
 //------GET
 
-function getAllUsers() {
+function getAllUsers(page) {
+  let list = document.querySelector('#general');
+            while (list.hasChildNodes()) {  
+                list.removeChild(list.firstChild);
+            }
   fetch(APIusers)
     .then((response) => response.json())
     .then(usersArr => {
-      usersArr.forEach(user => {
+      let pageCount = page*5;
+     pageUsers = usersArr.slice(pageCount-5, pageCount);
+     pageUsers.forEach(user => {
 
         let a = document.querySelector
           ('#general');
@@ -99,6 +107,8 @@ function getAllUsers() {
           });
       });
     });
+
+pagination() 
 }
 
 //----DETAIL
@@ -115,13 +125,19 @@ function detailUser(id) {
 //---ADDUSERS
 function addUser() {
   let name = document.querySelector('#formUser input[name="nome"]');
-  let username = document.querySelector('#formUser input[name="cognome"]');
+  let username = document.querySelector('#formUser input[name="username"]');
   let email = document.querySelector('#formUser input[name="email"]');
+  let address = document.querySelector('#formUser input[name="address"]');
+  let password = document.querySelector('#formUser input[name="password"]');
+  let phone = document.querySelector('#formUser input[name="phone"]');
+  let website = document.querySelector('#formUser input[name="website"]');
 
   let obj = {
     name: name.value,
     username: username.value,
-    city: city.value,
+    address: address.value,
+    phone: phone.value,
+    website: website.value,
     email: email.value,
     password: "qwerty",
   };
@@ -140,10 +156,8 @@ function addUser() {
 
 
     });
+    
 }
-
-
-
 
 
 //------------------ POST ------------------------
@@ -285,7 +299,11 @@ function login() {
 
 function searchUser() {
 
-
+  let list = document.querySelector('#general');
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+  
   let searchItem = document.querySelector('form input');
   fetch(APIusers)
     .then((response) => response.json())
@@ -295,13 +313,9 @@ function searchUser() {
       /* console.log(users); */
 
       usersArr.forEach(user => {
-        if (searchItem.value === user.name) {
-
-
-          let list = document.querySelector('#general');
-          while (list.hasChildNodes()) {
-            list.removeChild(list.firstChild);
-          }
+        let lowerSearch = searchItem.value.toLowerCase();
+        let lowerUser =user.name.toLowerCase();
+        if (lowerUser.includes(lowerSearch)) {
 
 
           let a = document.querySelector('#general');
@@ -360,4 +374,24 @@ function searchUser() {
       });
 
     });
+    
+}
+
+
+
+function pagination() {
+
+  fetch(APIusers)
+      .then((response) => response.json())
+      .then((json) => {
+
+  let count = json.length / 5;
+  let page = Math.ceil(count);
+  let pagination = document.querySelector('.pagination');
+  pagination.innerHTML = '';
+  for(let i=1; i<=page; i++){
+      pagination.innerHTML += '<li class="page-item"><button onclick="getAllUsers('+i+')" class="page-link" href="#">'+i+'</button></li>';
+  }
+
+});
 }
