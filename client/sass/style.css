@@ -19221,4 +19221,15 @@ body {
 nav {
   background: #570578;
 }
+
+#su_post div .card {
+  border-right: none;
+  border-left: none;
+  border-width: 2px;
+  border-radius: 0;
+}
+
+#su_post a {
+  color: #570578;
+}
 /*# sourceMappingURL=style.css.map */
