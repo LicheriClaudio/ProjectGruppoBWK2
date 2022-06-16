@@ -295,7 +295,11 @@ function login() {
 
 function searchUser() {
 
-
+  let list = document.querySelector('#general');
+  while (list.hasChildNodes()) {
+    list.removeChild(list.firstChild);
+  }
+  
   let searchItem = document.querySelector('form input');
   fetch(APIusers)
     .then((response) => response.json())
@@ -305,13 +309,10 @@ function searchUser() {
       /* console.log(users); */
 
       usersArr.forEach(user => {
-        if (searchItem.value === user.name) {
+        if (user.name.includes(searchItem.value)) {
 
 
-          let list = document.querySelector('#general');
-          while (list.hasChildNodes()) {
-            list.removeChild(list.firstChild);
-          }
+          
 
 
           let a = document.querySelector('#general');
