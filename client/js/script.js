@@ -125,13 +125,19 @@ function detailUser(id) {
 //---ADDUSERS
 function addUser() {
   let name = document.querySelector('#formUser input[name="nome"]');
-  let username = document.querySelector('#formUser input[name="cognome"]');
+  let username = document.querySelector('#formUser input[name="username"]');
   let email = document.querySelector('#formUser input[name="email"]');
+  let address = document.querySelector('#formUser input[name="address"]');
+  let password = document.querySelector('#formUser input[name="password"]');
+  let phone = document.querySelector('#formUser input[name="phone"]');
+  let website = document.querySelector('#formUser input[name="website"]');
 
   let obj = {
     name: name.value,
     username: username.value,
-    city: city.value,
+    address: address.value,
+    phone: phone.value,
+    website: website.value,
     email: email.value,
     password: "qwerty",
   };
@@ -314,9 +320,6 @@ function searchUser() {
         if (lowerUser.includes(lowerSearch)) {
 
 
-          
-
-
           let a = document.querySelector('#general');
           let cardA = document.createElement('div');
           cardA.className = 'col';
@@ -375,6 +378,8 @@ function searchUser() {
     });
     
 }
+
+
 
 function pagination() {
 
