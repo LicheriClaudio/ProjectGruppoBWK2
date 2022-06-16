@@ -309,7 +309,9 @@ function searchUser() {
       /* console.log(users); */
 
       usersArr.forEach(user => {
-        if (user.name.includes(searchItem.value)) {
+        let lowerSearch = searchItem.value.toLowerCase();
+        let lowerUser =user.name.toLowerCase();
+        if (lowerUser.includes(lowerSearch)) {
 
 
           
