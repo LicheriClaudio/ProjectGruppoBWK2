@@ -19218,7 +19218,43 @@ body {
   padding: 10rem 5rem 10rem 5rem;
 }
 
-nav {
-  background: #570578;
+#su_post {
+  display: none;
+}
+
+#su_post div .card {
+  border-right: none;
+  border-left: none;
+  border-width: 2px;
+  border-radius: 0;
+}
+
+a {
+  color: #570578;
+}
+
+#btn-paf button {
+  border: none;
+  background-color: #fff;
+  padding: 0.5em 0;
+}
+
+#btn-paf button:nth-child(2) {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+#su_photo {
+  display: none;
+}
+
+#su_album {
+  display: none;
+}
+
+.card-body:hover {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
