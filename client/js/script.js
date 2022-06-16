@@ -373,6 +373,7 @@ function searchUser() {
       });
 
     });
+    
 }
 
 function pagination() {
