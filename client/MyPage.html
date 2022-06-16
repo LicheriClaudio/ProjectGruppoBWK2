@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="sass/style.css" />
-
-    <script src="js/script.js"></script>
+    <!-- <script src="js/mypage.js"></script> -->
+    
   </head>
   <body>
     <header>
@@ -26,7 +26,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="  navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">MyPage</a>
               </li>
@@ -36,7 +36,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="login.html">Log Out</a>
               </li>
-            
+              <li class=" currentUsernav-item">
+                
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="removeUser()"href="login.html">Delete Account</a>
+              </li>
             </ul>
             <form class="d-flex" role="search">
               <input
@@ -55,17 +60,11 @@
     </header>
     <main>
         <div class="container">
-          <div id="general" class="container row row-cols-1 row-cols-md-2 g-4"></div>
+          <div id="myPage" class="container row row-cols-1 row-cols-md-2 g-4"></div>
 
         </div>
 
     </main>
-    <nav aria-label="... m-2">
-      <nav aria-label="...">
-        <ul class="pagination pagination-sm justify-content-end ">
-          
-        </ul>
-      </nav>
-    </nav>
+ 
   </body>
 </html>
