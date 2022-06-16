@@ -286,12 +286,12 @@ function login() {
           alert("benvenuto!");
           console.log(mail);
           console.log(password);
-        } else {
-          alert("mail o password errati!");
-          /* return */
-        }
+        } 
+        
       })
+      
     })
+    
 }
 
 
