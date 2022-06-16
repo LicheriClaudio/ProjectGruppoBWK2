@@ -5,6 +5,7 @@ const APIphoto = "http://localhost:3000/api/photo/";
 
 document.addEventListener("DOMContentLoaded", function () {
     detailUser();
+    showPost();
 });
 
 function detailUser() {
@@ -24,6 +25,54 @@ function detailUser() {
             let uName = document.createElement('h1');
             uName.innerText = `${del.name}`
             SUdiv.appendChild(uName);
+        })
+
+
+    let albumGenDiv = document.querySelector('#su_album');
+    fetch(APIalbum)
+        .then((response) => response.json())
+        .then(albumArr => {
+            albumArr.forEach(album => {
+                if (del.id === album.userId) {
+                    let albumDiv = document.createElement('div');
+                    albumDiv.classList = 'card p-4';
+                    albumGenDiv.append(albumDiv);
+                    let albumTitle = document.createElement('h5');
+                    albumTitle.innerText = `${album.title}`;
+                    albumTitle.classList = "text-uppercase";
+                    albumDiv.append(albumTitle);
+
+                    let openPh = document.createElement('a');
+                    openPh.setAttribute("data-bs-toggle", "collapse");
+                    openPh.classList = "collapsed my-3";
+                    openPh.href = `#collapse-ph${album.id}`;
+                    openPh.innerText = "Vedi tutte le foto";
+                    albumDiv.append(openPh);
+                    let collapsePhDiv = document.createElement('div');
+                    collapsePhDiv.classList = "collapse row row-cols-3 row-cols-md-5 g-4";
+                    collapsePhDiv.id = `collapse-ph${album.id}`;
+                    albumDiv.append(collapsePhDiv);
+                    fetch(APIphoto)
+                        .then((response) => response.json())
+                        .then(photoArr => {
+                            photoArr.forEach(photo => {
+                                if (album.id === photo.albumId) {
+                                    let photoAl = document.createElement('img');
+                                    photoAl.src = photo.url;
+                                    collapsePhDiv.append(photoAl);
+                                }
+                                let photoGenDiv = document.querySelector('#su_photo');
+                                if (del.id === album.userId && album.userId === photo.albumId) {
+                                    let photoAll = document.createElement('img');
+                                    photoAll.src = photo.url;
+                                    photoGenDiv.append(photoAll);
+                                }
+                            })
+                        })
+
+
+                }
+            })
         })
 
     let postBodyDiv = document.querySelector('#su_post');
@@ -85,4 +134,26 @@ function detailUser() {
                 }
             });
         });
+}
+
+let btnPost = document.querySelector('#su_post');
+let btnAlbum = document.querySelector('#su_album');
+let btnFoto = document.querySelector('#su_photo');
+
+function showAlbum() {
+    btnPost.style.display = "none";
+    btnAlbum.style.display = "block";
+    btnFoto.style.display = "none";
+}
+
+function showPost() {
+    btnPost.style.display = "block";
+    btnAlbum.style.display = "none";
+    btnFoto.style.display = "none";
+}
+
+function showFoto() {
+    btnPost.style.display = "none";
+    btnAlbum.style.display = "none";
+    btnFoto.style.display = "block";
 }

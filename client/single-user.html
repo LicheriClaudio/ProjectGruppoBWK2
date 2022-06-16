@@ -12,7 +12,17 @@
     <main>
       <div class="container">
         <div id="single_user" class="d-flex align-items-center my-5"></div>
-        <div id="su_post" class="row row-cols-1 g-4"></div>
+        <div id="btn-paf" class="row row-cols-1 row-cols-md-3 g-4">
+          <button onclick="showPost()">POST</button>
+          <button onclick="showAlbum()">ALBUM</button>
+          <button onclick="showFoto()">FOTO</button>
+        </div>
+        <div id="su_post" class="row row-cols-1 g-4 mt-5"></div>
+        <div id="su_album" class="row row-cols-1 g-4 mt-5"></div>
+        <div
+          id="su_photo"
+          class="row row row-cols-3 row-cols-md-5 g-4 mt-5"
+        ></div>
       </div>
     </main>
     <footer></footer>

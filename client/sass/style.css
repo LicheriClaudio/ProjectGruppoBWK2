@@ -19218,6 +19218,10 @@ body {
   padding: 10rem 5rem 10rem 5rem;
 }
 
+#su_post {
+  display: none;
+}
+
 #su_post div .card {
   border-right: none;
   border-left: none;
@@ -19225,7 +19229,26 @@ body {
   border-radius: 0;
 }
 
-#su_post a {
+a {
   color: #570578;
+}
+
+#btn-paf button {
+  border: none;
+  background-color: #fff;
+  padding: 0.5em 0;
+}
+
+#btn-paf button:nth-child(2) {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+#su_photo {
+  display: none;
+}
+
+#su_album {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
