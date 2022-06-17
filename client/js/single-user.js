@@ -138,6 +138,7 @@ function detailUser() {
                     addCommentBtn.innerText = "Aggiungi commento"
                     addCommentBtn.classList = "btn btn-warning";
                     addCommentBtn.onclick = function () {
+                        collapseDiv.innerHTML = '';
                         fetch(APIcom, {
                             method: "POST",
                             body: JSON.stringify(
@@ -163,11 +164,37 @@ function detailUser() {
                             .then((myJson) => {
                                 console.log(myJson);
                             });
-                        location.reload();
+                        /* stampCom(); */
+                        fetch(APIcom)
+                            .then((response) => response.json())
+                            .then(comArr => {
+                                comArr.forEach(com => {
+                                    if (post.id === com.postId) {
+                                        let comDiv = document.createElement('div');
+                                        comDiv.classList = "card card-body";
+                                        collapseDiv.append(comDiv);
+                                        let comUser = document.createElement('p');
+                                        comUser.className = "mb-0"
+                                        comUser.innerText = `User: ${com.email}`;
+                                        comDiv.append(comUser);
+                                        let comHr = document.createElement('hr');
+                                        comDiv.append(comHr);
+                                        let comTitle = document.createElement('h6');
+                                        comTitle.classList = "text-uppercase mb-3"
+                                        comTitle.innerText = `${com.name}`;
+                                        comDiv.append(comTitle);
+                                        let comBody = document.createElement('p');
+                                        comBody.innerText = `${com.body}`;
+                                        comBody.className = "mb-0"
+                                        comDiv.append(comBody);
+
+                                    }
+                                })
+                            })
                     }
                     postDiv.append(addCommentBtn);
 
-                    /*   function stampCom() { */
+                    /* function stampCom() { */
                     fetch(APIcom)
                         .then((response) => response.json())
                         .then(comArr => {
