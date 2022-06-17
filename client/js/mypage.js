@@ -11,6 +11,7 @@ function detailUser() {
     var userlog = JSON.parse(sessionStorage.getItem('login'));
     let SUdiv = document.querySelector('#single_user');
     let details = document.querySelector('#single_user_details');
+    let welcome = document.querySelector('#welcome');
     fetch(APIphoto) 
         .then((response) => response.json())
         .then(postArr => {
@@ -22,13 +23,18 @@ function detailUser() {
                     SUdiv.append(profImg);
                 }
             })
+            let welcomeMessage = document.createElement('div');
+            welcomeMessage.innerHTML = `<h1> Welcome to Code Together ${userlog.name}!</h1>
+                                 <a class="nav-link" href="Project.html">Click to see your fellow users!</a>`;
+                         
             let uName = document.createElement('h1');
             uName.innerText = `${userlog.name}`
             SUdiv.appendChild(uName);
-            let website = document.createElement('p');
+            let website = document.createElement('div');
             website.innerHTML = `<p> Website: ${userlog.website}</p>
                                  <a class="nav-link" href="login.html"><button type="button" onclick="removeAccount(${userlog.id})" class="btn btn-danger btn-sm">Delete Account</button></a>`
             details.append(website);
+            welcome.append(welcomeMessage);     
             // let company = document.createElement('p');
             // company.innerText = `${del.companyname}`
             // company.appendChild(company);
