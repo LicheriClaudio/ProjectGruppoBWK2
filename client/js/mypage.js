@@ -31,7 +31,17 @@ function detailUser() {
             uName.innerText = `${userlog.name}`
             SUdiv.appendChild(uName);
             let website = document.createElement('div');
-            website.innerHTML = `<p> Website: ${userlog.website}</p>
+            website.innerHTML = `
+                                <h4> Website:</h4>
+                                <p> ${userlog.website}</p>
+                                <h4> Company Details:</h4>
+                                <p> Name:  ${userlog.company.name}</p>
+                                <p> Sectors: ${userlog.company.bs}</p>
+                                <h4> Address:</h4>
+                                <p> Name:  ${userlog.address.street}, ${userlog.address.suite} </p>
+                                <p> Name:  ${userlog.address.city}, ${userlog.address.zipcode}</p>
+                               
+                                
                                  <a class="nav-link" href="login.html"><button type="button" onclick="removeAccount(${userlog.id})" class="btn btn-danger btn-sm">Delete Account</button></a>`
             details.append(website);
             welcome.append(welcomeMessage);     
