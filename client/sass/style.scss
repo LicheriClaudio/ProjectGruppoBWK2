@@ -62,7 +62,7 @@ a {
 
 #myPage {
   
-  width: 40%;
+  width: 30%;
   height:800px;
   background-color: lightgrey;
   border: 1px solid black;
@@ -71,14 +71,24 @@ a {
 
 #myPageComments {
  
-  width: 25%;
+  width: 20%;
+  background-color: black;
+  color: white;
   
   div{
     padding: 10%;
     margin: 5% 0;
     border: 1px solid black;
-    background-color: azure;
+    background-color: lightgray;
     color: rgb(34, 34, 55);
+
+    h3 {
+      font-size: 1rem;;
+    }
+
+    p {
+      font-size: .5rem;
+    }
   }
 
  
@@ -86,10 +96,10 @@ a {
 
 #myPagePosts {
   
-  width: 25%;
+  width: 45%;
  
   div{
-    margin: 5% 0;
+    margin-top: 5%;
     padding: 10%;
     border: 1px solid black;
     background-color: azure;
@@ -107,7 +117,7 @@ a {
 
 .myPageHeaders div:nth-child(2) {
   
-  width: 20%;
+  width: 30%;
   color: rgb(169, 160, 188);
   text-shadow: 2px 2px 5px black;
 }
@@ -118,4 +128,9 @@ a {
   color: rgb(169, 160, 188);
   text-shadow: 2px 2px 5px black;
   
+}
+
+#myPageComments img{
+  height:100px;
+  width: 200px;
 }

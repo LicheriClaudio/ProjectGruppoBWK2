@@ -90,7 +90,7 @@ function detailUser() {
             }
             })
         })
-    })
+        })
         })
             let welcomeMessage = document.createElement('div');
             welcomeMessage.innerHTML = `<h1> Welcome to Code Together ${userlog.name}!</h1>
