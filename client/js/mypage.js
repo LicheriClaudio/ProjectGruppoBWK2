@@ -26,10 +26,28 @@ function detailUser() {
             uName.innerText = `${userlog.name}`
             SUdiv.appendChild(uName);
             let website = document.createElement('p');
-            website.innerText = `Website: ${userlog.website}`
+            website.innerHTML = `<p> Website: ${userlog.website}</p>
+                                 <a class="nav-link" href="login.html"><button type="button" onclick="removeAccount(${userlog.id})" class="btn btn-danger btn-sm">Delete Account</button></a>`
             details.append(website);
             // let company = document.createElement('p');
             // company.innerText = `${del.companyname}`
             // company.appendChild(company);
         })
     }
+
+
+    function logOut() {
+
+        sessionStorage.clear();
+
+    }
+
+    function removeAccount(id) {
+        alert("Account Deleted!");
+        sessionStorage.clear();
+        fetch(urlAPI+id, {method: 'DELETE'}).then(response => response.text()).then(json => {
+        window.location = "http://127.0.0.1:5500/client/login.html";
+        })
+        
+        
+      }

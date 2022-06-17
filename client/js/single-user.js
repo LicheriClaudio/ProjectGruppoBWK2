@@ -157,3 +157,9 @@ function showFoto() {
     btnAlbum.style.display = "none";
     btnFoto.style.display = "block";
 }
+
+function logOut() {
+
+    sessionStorage.clear();
+  
+  }

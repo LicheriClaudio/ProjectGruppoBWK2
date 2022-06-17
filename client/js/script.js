@@ -398,3 +398,11 @@ function pagination() {
 
 });
 }
+
+function logOut() {
+
+  sessionStorage.clear();
+
+}
+
+
