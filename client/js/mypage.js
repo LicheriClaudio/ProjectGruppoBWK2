@@ -2,6 +2,7 @@ const APIpost = "http://localhost:3000/api/pst/";
 const APIcom = "http://localhost:3000/api/comment/";
 const APIalbum = "http://localhost:3000/api/album/";
 const APIphoto = "http://localhost:3000/api/photo/";
+const APIusers = "http://localhost:3000/api/users/";
 
 document.addEventListener("DOMContentLoaded", function () {
     detailUser();
@@ -42,7 +43,7 @@ function detailUser() {
                                 <p> Name:  ${userlog.address.city}, ${userlog.address.zipcode}</p>
                                
                                 
-                                 <a class="nav-link" href="login.html"><button type="button" onclick="removeAccount(${userlog.id})" class="btn btn-danger btn-sm">Delete Account</button></a>`
+                                 <button type="button" onclick="removeAccount(${userlog.id})" class="btn btn-danger btn-sm">Delete Account</button>` //<a class="nav-link" href="login.html">
             details.append(website);
             welcome.append(welcomeMessage);     
             // let company = document.createElement('p');
@@ -59,11 +60,15 @@ function detailUser() {
     }
 
     function removeAccount(id) {
-        alert("Account Deleted!");
-        sessionStorage.clear();
-        fetch(urlAPI+id, {method: 'DELETE'}).then(response => response.text()).then(json => {
-        window.location = "http://127.0.0.1:5500/client/login.html";
-        })
         
+        
+        fetch(APIusers+id, {method: 'DELETE'}).then(response => response.text()).then(json => {
+            console.log(json);
+            
+        })
+        alert("Account Deleted!");
+        
+        sessionStorage.clear();
+        window.location = "http://127.0.0.1:5500/client/login.html";
         
       }
