@@ -81,7 +81,6 @@ function detailUser() {
         .then(postArr => {
             postArr.forEach(post => {
                 if (del.id === post.userId) {
-                    console.log(post);
                     let postDiv = document.createElement('div');
                     postDiv.classList = 'card p-4';
                     postBodyDiv.append(postDiv);
@@ -104,6 +103,70 @@ function detailUser() {
                     collapseDiv.classList = "collapse row row-cols-1 g-4";
                     collapseDiv.id = `collapse${post.id}`;
                     postDiv.append(collapseDiv);
+
+                    let userLabel = document.createElement('label');
+                    userLabel.setAttribute("for", "user-com");
+                    userLabel.innerText = "User";
+                    postDiv.append(userLabel);
+                    let userInput = document.createElement('input');
+                    userInput.type = "text";
+                    userInput.name = "user-com";
+                    userInput.id = "user-com";
+                    postDiv.append(userInput);
+
+                    let titleLabel = document.createElement('label');
+                    titleLabel.setAttribute("for", "titolo-com");
+                    titleLabel.innerText = "Titolo";
+                    postDiv.append(titleLabel);
+                    let titleInput = document.createElement('input');
+                    titleInput.type = "text";
+                    titleInput.name = "titolo-com";
+                    titleInput.id = "titolo-com";
+                    postDiv.append(titleInput);
+
+                    let comLabel = document.createElement('label');
+                    comLabel.setAttribute("for", "commento-com");
+                    comLabel.innerText = "Commento";
+                    postDiv.append(comLabel);
+                    let comInput = document.createElement('textarea');
+                    comInput.name = "commento-com";
+                    comInput.id = "commento-com";
+                    postDiv.append(comInput);
+
+                    let addCommentBtn = document.createElement('button');
+                    addCommentBtn.type = "button";
+                    addCommentBtn.innerText = "Aggiungi commento"
+                    addCommentBtn.onclick = function () {
+                        fetch(APIcom, {
+                            method: "POST",
+                            body: JSON.stringify(
+                                {
+                                    postId: post.id,
+                                    name: titleInput.value,
+                                    email: userInput.value,
+                                    body: comInput.value
+                                }),
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                        })
+                            .then(res => res.json())
+                            .then(json => console.log(json));
+                        titleInput.value = '';
+                        userInput.value = '';
+                        comInput.value = '';
+                        fetch(APIcom)
+                            .then((response) => {
+                                return response.json();
+                            })
+                            .then((myJson) => {
+                                console.log(myJson);
+                            });
+                        location.reload();
+                    }
+                    postDiv.append(addCommentBtn);
+
+                    /*   function stampCom() { */
                     fetch(APIcom)
                         .then((response) => response.json())
                         .then(comArr => {
@@ -127,10 +190,10 @@ function detailUser() {
                                     comBody.className = "mb-0"
                                     comDiv.append(comBody);
 
-
                                 }
                             })
                         })
+                    /* } */
                 }
             });
         });
