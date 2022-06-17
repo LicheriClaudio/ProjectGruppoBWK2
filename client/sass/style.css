@@ -19258,11 +19258,64 @@ a {
   cursor: pointer;
 }
 
+.mainMyPage {
+  position: relative;
+}
+
 #myPage {
-  width: 50%;
+  position: absolute;
+  top: 180px;
+  left: 70px;
+  width: 40%;
   height: 800px;
   background-color: lightgrey;
-  border: 5px solid black;
-  border-radius: 2.5%;
+  border: 1px solid black;
+  border-radius: 1%;
+}
+
+#myPageComments {
+  position: absolute;
+  top: 300px;
+  right: 400px;
+  width: 25%;
+}
+
+#myPageComments div {
+  padding: 10%;
+  margin: 5% 0;
+  border: 1px solid black;
+  background-color: azure;
+  color: #222237;
+}
+
+#myPagePosts {
+  position: absolute;
+  top: 300px;
+  right: 70px;
+  width: 25%;
+}
+
+#myPagePosts div {
+  margin: 5% 0;
+  padding: 10%;
+  border: 1px solid black;
+  background-color: azure;
+  color: #441c5c;
+}
+
+.myPageHeaders div:nth-child(1) {
+  width: 50%;
+}
+
+.myPageHeaders div:nth-child(2) {
+  width: 20%;
+  color: #a9a0bc;
+  text-shadow: 2px 2px 5px black;
+}
+
+.myPageHeaders div:nth-child(3) {
+  width: 20%;
+  color: #a9a0bc;
+  text-shadow: 2px 2px 5px black;
 }
 /*# sourceMappingURL=style.css.map */

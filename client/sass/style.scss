@@ -56,11 +56,72 @@ a {
   cursor: pointer;
 
 }
+.mainMyPage {
+  position:relative;
+}
 
 #myPage {
-  width: 50%;
-  height: 800px;
+  position: absolute;
+  top: 180px;
+  left: 70px;
+  width: 40%;
+  height:800px;
   background-color: lightgrey;
-  border: 5px solid black;
-  border-radius: 2.5%;
+  border: 1px solid black;
+  border-radius: 1%;
+}
+
+#myPageComments {
+  position: absolute;
+  top:300px;
+  right: 400px;
+  width: 25%;
+  
+  div{
+    padding: 10%;
+    margin: 5% 0;
+    border: 1px solid black;
+    background-color: azure;
+    color: rgb(34, 34, 55);
+  }
+
+ 
+}
+
+#myPagePosts {
+  position: absolute;
+  top:300px;
+  right: 70px;
+  width: 25%;
+ 
+  div{
+    margin: 5% 0;
+    padding: 10%;
+    border: 1px solid black;
+    background-color: azure;
+    color: rgb(68, 28, 92);
+  }
+
+  
+  
+}
+
+.myPageHeaders div:nth-child(1) {
+  
+  width: 50%;
+}
+
+.myPageHeaders div:nth-child(2) {
+  
+  width: 20%;
+  color: rgb(169, 160, 188);
+  text-shadow: 2px 2px 5px black;
+}
+
+.myPageHeaders div:nth-child(3) {
+  
+  width: 20%;
+  color: rgb(169, 160, 188);
+  text-shadow: 2px 2px 5px black;
+  
 }

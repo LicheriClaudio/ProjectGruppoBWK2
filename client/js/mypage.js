@@ -13,6 +13,8 @@ function detailUser() {
     let SUdiv = document.querySelector('#single_user');
     let details = document.querySelector('#single_user_details');
     let welcome = document.querySelector('#welcome');
+    let myPagePosts = document.querySelector('#myPagePosts');
+    let myPageComments = document.querySelector('#myPageComments');
     fetch(APIphoto) 
         .then((response) => response.json())
         .then(postArr => {
@@ -23,6 +25,30 @@ function detailUser() {
                     profImg.src = photo.thumbnailUrl;
                     SUdiv.append(profImg);
                 }
+            })
+    fetch(APIcom) 
+        .then((response) => response.json())
+        .then(postArr => {
+            postArr.forEach(com => {
+                // if (userlog.id === com.id) {
+                    let comments = document.createElement('div');
+                    // profImg.classList = 'rounded-circle me-3';
+                    comments.innerHTML = `<h3>${com.postId}</h3>
+                                      <p>"${com.body}"</p>`
+                    myPageComments.append(comments);
+                // }
+            })
+    fetch(APIpost) 
+        .then((response) => response.json())
+        .then(postArr => {
+            postArr.forEach(post => {
+                // if (userlog.id === post.id) {
+                    let posts = document.createElement('div');
+                    // profImg.classList = 'rounded-circle me-3';
+                    posts.innerHTML = `<h3>${post.userId}</h3>
+                                      <p> "${post.body} "</p>`
+                    myPagePosts.append(posts);
+            // }
             })
             let welcomeMessage = document.createElement('div');
             welcomeMessage.innerHTML = `<h1> Welcome to Code Together ${userlog.name}!</h1>
@@ -50,7 +76,10 @@ function detailUser() {
             // company.innerText = `${del.companyname}`
             // company.appendChild(company);
         })
-    }
+    })
+    })
+}
+
 
 
     function logOut() {
