@@ -19267,13 +19267,18 @@ a {
   height: 800px;
   background-color: lightgrey;
   border: 1px solid black;
-  border-radius: 1%;
+  border-radius: 25px;
 }
 
 #myPageComments {
+  position: absolute;
+  top: -100px;
+  right: 1px;
   width: 20%;
   background-color: black;
   color: white;
+  border: 1px solid white;
+  border-radius: 25px;
 }
 
 #myPageComments div {
@@ -19282,6 +19287,7 @@ a {
   border: 1px solid black;
   background-color: lightgray;
   color: #222237;
+  border-radius: 25px;
 }
 
 #myPageComments div h3, #myPageComments div .h3 {
@@ -19293,7 +19299,8 @@ a {
 }
 
 #myPagePosts {
-  width: 45%;
+  width: 50%;
+  margin-right: 20%;
 }
 
 #myPagePosts div {
@@ -19302,6 +19309,7 @@ a {
   border: 1px solid black;
   background-color: azure;
   color: #441c5c;
+  border-radius: 25px;
 }
 
 .myPageHeaders div:nth-child(1) {
@@ -19322,6 +19330,6 @@ a {
 
 #myPageComments img {
   height: 100px;
-  width: 200px;
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
