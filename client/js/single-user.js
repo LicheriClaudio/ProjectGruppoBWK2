@@ -136,6 +136,7 @@ function detailUser() {
                     let addCommentBtn = document.createElement('button');
                     addCommentBtn.type = "button";
                     addCommentBtn.innerText = "Aggiungi commento"
+                    addCommentBtn.classList = "btn btn-warning";
                     addCommentBtn.onclick = function () {
                         fetch(APIcom, {
                             method: "POST",
@@ -224,5 +225,5 @@ function showFoto() {
 function logOut() {
 
     sessionStorage.clear();
-  
-  }
+
+}
