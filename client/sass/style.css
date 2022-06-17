@@ -19251,4 +19251,85 @@ a {
 #su_album {
   display: none;
 }
+
+.card-body:hover {
+  -webkit-filter: brightness(120%);
+          filter: brightness(120%);
+  cursor: pointer;
+}
+
+.mainMyPage {
+  position: relative;
+}
+
+#myPage {
+  width: 30%;
+  height: 800px;
+  background-color: lightgrey;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+#myPageComments {
+  position: absolute;
+  top: -100px;
+  right: 1px;
+  width: 20%;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 25px;
+}
+
+#myPageComments div {
+  padding: 10%;
+  margin: 5% 0;
+  border: 1px solid black;
+  background-color: lightgray;
+  color: #222237;
+  border-radius: 25px;
+}
+
+#myPageComments div h3, #myPageComments div .h3 {
+  font-size: 1rem;
+}
+
+#myPageComments div p {
+  font-size: .5rem;
+}
+
+#myPagePosts {
+  width: 50%;
+  margin-right: 20%;
+}
+
+#myPagePosts div {
+  margin-top: 5%;
+  padding: 10%;
+  border: 1px solid black;
+  background-color: azure;
+  color: #441c5c;
+  border-radius: 25px;
+}
+
+.myPageHeaders div:nth-child(1) {
+  width: 50%;
+}
+
+.myPageHeaders div:nth-child(2) {
+  width: 30%;
+  color: #a9a0bc;
+  text-shadow: 2px 2px 5px black;
+}
+
+.myPageHeaders div:nth-child(3) {
+  width: 20%;
+  color: #a9a0bc;
+  text-shadow: 2px 2px 5px black;
+}
+
+#myPageComments img {
+  height: 100px;
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */

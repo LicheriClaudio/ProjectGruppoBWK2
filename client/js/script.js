@@ -282,17 +282,20 @@ function login() {
           document.getElementById("form3Example3").value === mail.email &&
           document.getElementById("form3Example4").value == "qwerty"
         ) {
-          window.location = "http://127.0.0.1:5500/client/Project.html";
+          let j = JSON.stringify(mail);
+          sessionStorage.setItem(`login`, j);
+          window.location = "http://127.0.0.1:5500/client/MyPage.html";
           alert("benvenuto!");
           console.log(mail);
           console.log(password);
-        } else {
-          alert("mail o password errati!");
-          /* return */
-        }
+        } 
+        
       })
+      
     })
+    
 }
+
 
 
 
@@ -395,3 +398,11 @@ function pagination() {
 
 });
 }
+
+function logOut() {
+
+  sessionStorage.clear();
+
+}
+
+
